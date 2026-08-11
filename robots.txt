@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+User-agent: WhatsApp
+Allow: /
+User-agent: facebookexternalhit
+Allow: /
+User-agent: Twitterbot
+Allow: /
+User-agent: LinkedInBot
+Allow: /
+User-agent: Slackbot-LinkExpanding
+Allow: /
+User-agent: Discordbot
+Allow: /
+Sitemap: https://caspiant1d.in/sitemap.xml
