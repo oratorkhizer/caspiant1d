@@ -5,7 +5,7 @@
   --paper:#FBF9F5; --paper-2:#F3EFE7; --card:#ffffff;
   --line:#e3ddd1;
   --blue:#0B6FC2; --blue-deep:#0057A8; --blue-soft:#E7F1FB;
-  --amber:#A6540F; --amber-soft:#FCF3E8;
+  --amber:#D6336C; --amber-soft:#FCF3E8;
   --green:#1F8A5F; --green-soft:#E4F3EC;
   --red:#C0453F; --red-soft:#FBEBEA;
   --night:#0d1a28;
@@ -116,7 +116,7 @@ header.stuck{border-bottom-color:var(--line); background:color-mix(in srgb, var(
   content:""; position:absolute; inset:-30% -10% auto -10%; height:120%; z-index:-1;
   background:
     radial-gradient(60% 55% at 18% 12%, rgba(11,111,194,.13), transparent 70%),
-    radial-gradient(50% 50% at 88% 8%, rgba(217,123,41,.11), transparent 70%),
+    radial-gradient(50% 50% at 88% 8%, rgba(255,75,131,.11), transparent 70%),
     radial-gradient(45% 40% at 60% 65%, rgba(31,138,95,.08), transparent 70%);
   filter:blur(10px);
 }
@@ -170,7 +170,7 @@ h1 em{font-family:"Instrument Serif",Georgia,serif; font-style:italic; font-weig
 .ba-before{background:var(--paper-2)}
 .ba-after{background:#fff; border-color:rgba(11,111,194,.28); box-shadow:var(--shadow-lg)}
 .ba-tag{display:inline-flex; align-items:center; gap:.45rem; font-size:.72rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; padding:.35rem .8rem; border-radius:100px; margin-bottom:1.2rem}
-.ba-before .ba-tag{background:#e8e0d2; color:#7d6a4e}
+.ba-before .ba-tag{background:#e8e0d2; color:#966663}
 .ba-after .ba-tag{background:var(--blue-soft); color:var(--blue-deep)}
 .ba-col h3{font-size:1.4rem; margin-bottom:1.2rem; font-weight:600}
 .ba-col ul{list-style:none; margin:0; padding:0; display:grid; gap:.85rem}
@@ -303,7 +303,7 @@ details[open] summary{color:var(--blue)}
 
 /* ============ CTA ============ */
 .cta{background:var(--night); color:#fff; position:relative; overflow:hidden}
-.cta::before{content:""; position:absolute; inset:0; background:radial-gradient(60% 70% at 75% 20%, rgba(11,111,194,.3), transparent 65%), radial-gradient(50% 60% at 10% 90%, rgba(217,123,41,.18), transparent 65%)}
+.cta::before{content:""; position:absolute; inset:0; background:radial-gradient(60% 70% at 75% 20%, rgba(11,111,194,.3), transparent 65%), radial-gradient(50% 60% at 10% 90%, rgba(255,75,131,.18), transparent 65%)}
 .cta>*{position:relative}
 .cta h2{font-size:clamp(2rem,1.3rem + 3.2vw,3.6rem); color:#fff; margin-bottom:.5em}
 .cta .lede{color:#a9bdd0}
