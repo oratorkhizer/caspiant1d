@@ -1,0 +1,125 @@
+/* A day with the pump: the scroll moment at the top of the home page.
+   Base styles are a static, readable layout (no JS, or reduced motion).
+   .dw-live (added by JS) pins the stage and lets scroll drive the day. */
+.dw{padding:0; background:var(--paper); position:relative}
+.dw-stage{padding:clamp(1.6rem,4vw,3rem) 0 clamp(2rem,4vw,3rem); width:min(1180px, 100% - 32px); margin-inline:auto}
+.dw-top{display:flex; align-items:center; gap:.8rem; margin-bottom:1rem}
+.dw-eye{font-size:.72rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--blue); display:flex; align-items:center; gap:.55rem}
+.dw-eye::before{content:""; width:22px; height:1px; background:currentColor; opacity:.55}
+.dw-clock{display:none; margin-left:auto; font-variant-numeric:tabular-nums; font-size:.9rem; color:var(--ink-2)}
+.dw-clock b{font-weight:650; color:var(--ink)}
+.dw-skip{position:relative; z-index:5; font-size:.8rem; font-weight:600; color:var(--ink-2); text-decoration:none; border:1px solid var(--line); background:#fff; border-radius:100px; padding:.42rem .9rem; margin-left:auto}
+.dw-skip:hover{border-color:var(--ink-3); color:var(--ink)}
+.dw-skip:focus-visible,.dw-go:focus-visible{outline:3px solid var(--blue); outline-offset:3px}
+.dw-clock + .dw-skip{margin-left:.6rem}
+
+.dw-body{display:grid; gap:1.2rem}
+.dw-pics{display:grid; grid-template-columns:repeat(3,1fr); gap:.5rem}
+.dw-pic{margin:0; position:relative; border-radius:14px; overflow:hidden; background:var(--paper-2); aspect-ratio:3/2}
+.dw-pic img{width:100%; height:100%; object-fit:cover}
+.dw-pic figcaption{position:absolute; right:.45rem; bottom:.4rem; font-size:.62rem; letter-spacing:.02em; color:#fff; background:rgba(18,32,47,.55); padding:.12rem .45rem; border-radius:6px}
+
+.dw-scenes{list-style:none; margin:0; padding:0; display:grid; gap:.9rem}
+.dw-t{display:block; font-size:.74rem; font-weight:650; letter-spacing:.08em; text-transform:uppercase; color:var(--amber); margin-bottom:.25rem}
+.dw-scene p{margin:0; font-family:"Instrument Serif",Georgia,serif; font-size:clamp(1.3rem,1.1rem + 1vw,1.9rem); line-height:1.2; letter-spacing:-.01em; color:var(--ink); text-wrap:balance}
+.dw-end{margin-top:1.2rem}
+.dw-end-h{font-family:"Instrument Serif",Georgia,serif; font-size:clamp(1.5rem,1.2rem + 1.4vw,2.3rem); line-height:1.15; margin:0 0 .4rem; color:var(--ink)}
+.dw-end-s{color:var(--ink-2); margin:0 0 .9rem; font-size:.98rem}
+.dw-go{position:relative; z-index:5; display:inline-flex; gap:.5rem; align-items:center; font-weight:600; font-size:.95rem; color:#fff; background:var(--blue); text-decoration:none; border-radius:100px; padding:.75rem 1.3rem; box-shadow:0 6px 20px -8px rgba(11,111,194,.7)}
+.dw-go:hover{background:var(--blue-deep)}
+
+.dw-chart{background:#fff; border:1px solid var(--line); border-radius:18px; padding:.9rem .9rem .7rem 2.1rem; box-shadow:var(--shadow)}
+.dw-plot{position:relative; height:clamp(150px,24vh,260px)}
+.dw-band{position:absolute; left:0; right:0; top:41.67%; bottom:12.5%; background:var(--green-soft); border-block:1px dashed rgba(31,138,95,.35); border-radius:4px}
+.dw-key{display:flex; flex-wrap:wrap; gap:.3rem 1rem; margin:0 0 .5rem -1.2rem; font-size:.68rem; font-weight:600; color:var(--ink-2)}
+.dw-key span{display:inline-flex; align-items:center; gap:.4rem}
+.dw-key i{display:inline-block; width:14px; height:10px; border-radius:3px; background:var(--green-soft); border:1px dashed rgba(31,138,95,.5)}
+.dw-key i.k-line{height:3px; border:0; background:var(--blue); border-radius:2px}
+.dw-key i.k-mk{width:10px; height:10px; border:0; border-radius:50%; background:var(--amber)}
+.dw-y{position:absolute; left:-1.8rem; transform:translateY(-50%); font-size:.64rem; color:var(--ink-3); font-variant-numeric:tabular-nums}
+.dw-svg{position:absolute; inset:0; width:100%; height:100%; overflow:visible}
+.dw-ghost{fill:none; stroke:var(--line); stroke-width:2; vector-effect:non-scaling-stroke; display:none}
+.dw-line{fill:none; stroke:var(--blue); stroke-width:3; stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke}
+.dw-dot{display:none; position:absolute; width:12px; height:12px; margin:-6px 0 0 -6px; border-radius:50%; background:var(--blue); box-shadow:0 0 0 4px rgba(11,111,194,.18); left:0; top:70%}
+.dw-mk{position:absolute; transform:translate(-50%,-50%); display:flex; flex-direction:column; align-items:center; pointer-events:none}
+.dw-mk b{display:grid; place-items:center; width:20px; height:20px; border-radius:50%; background:var(--amber); color:#fff; font-size:.72rem; font-weight:700; line-height:1; box-shadow:0 0 0 4px rgba(214,51,108,.16)}
+.dw-mk em{font-style:normal; font-size:.66rem; font-weight:600; color:var(--amber); white-space:nowrap; position:absolute; bottom:calc(100% + 5px); left:50%; transform:translateX(-50%); background:rgba(255,255,255,.92); padding:.05rem .35rem; border-radius:5px}
+.dw-mk-low em{bottom:auto; top:calc(100% + 5px)}
+.dw-mk-r em{left:auto; right:-8px; transform:none}
+.dw-basal{display:flex; align-items:flex-end; gap:1px; height:18px; margin-top:.45rem; border-bottom:1px solid var(--line)}
+.dw-basal i{flex:1; background:var(--amber); opacity:.55; border-radius:1px 1px 0 0; min-height:1px}
+.dw-xa{display:flex; justify-content:space-between; font-size:.64rem; color:var(--ink-3); margin-top:.3rem; font-variant-numeric:tabular-nums}
+.dw-note{margin:.55rem 0 0; font-size:.72rem; line-height:1.45; color:var(--ink-3)}
+.dw-note b{color:var(--ink-2); font-weight:650}
+
+@media (min-width:761px){
+  .dw-body{grid-template-columns:1fr 1fr; align-items:start}
+  .dw-pics{grid-column:1 / -1}
+}
+
+/* ---------- live (pinned) ---------- */
+.dw.dw-live{height:560vh}
+.dw-live .dw-stage{position:sticky; top:var(--hdr,64px); height:calc(100vh - var(--hdr,64px)); height:calc(100dvh - var(--hdr,64px)); display:flex; flex-direction:column; padding-block:.8rem 1rem; overflow:hidden}
+.dw-live .dw-clock{display:block}
+.dw-live .dw-body{flex:1; min-height:0; display:grid; grid-template-rows:minmax(0,1fr) auto auto; gap:.8rem}
+.dw-live .dw-pics{display:block; position:relative; min-height:120px}
+.dw-live .dw-pic{position:absolute; inset:0; aspect-ratio:auto; opacity:0; transition:opacity .6s ease}
+.dw-live .dw-pic.on{opacity:1}
+.dw-live .dw-pic img{transform:scale(var(--kb,1.04)); transition:transform .2s linear}
+.dw-live .dw-words{display:grid}
+.dw-live .dw-words > *{grid-area:1 / 1}
+.dw-live .dw-scenes{display:grid}
+.dw-live .dw-scene{grid-area:1 / 1; opacity:0; transform:translateY(10px); transition:opacity .45s ease, transform .45s ease}
+.dw-live .dw-scene.on{opacity:1; transform:none}
+.dw-live .dw-end{margin:0; opacity:0; transform:translateY(10px); transition:opacity .45s ease, transform .45s ease; pointer-events:none}
+.dw-live.dw-done .dw-scene.on{opacity:0}
+.dw-live.dw-done .dw-end{opacity:1; transform:none; pointer-events:auto}
+.dw-live .dw-ghost,.dw-live .dw-dot{display:block}
+.dw-live .dw-mk{opacity:0; transform:translate(-50%,-50%) scale(.6); transition:opacity .35s ease, transform .35s ease}
+.dw-live .dw-mk.on{opacity:1; transform:translate(-50%,-50%) scale(1)}
+.dw-live .dw-mk.on b{animation:dwPulse 1.6s ease-out 1}
+.dw-live .dw-basal i{opacity:.12}
+.dw-live .dw-basal i.on{opacity:.6}
+@keyframes dwPulse{0%{box-shadow:0 0 0 0 rgba(214,51,108,.5)}100%{box-shadow:0 0 0 12px rgba(214,51,108,0)}}
+
+@media (max-width:760px){
+  .dw-live .dw-stage{padding-bottom:calc(4.9rem + env(safe-area-inset-bottom))}
+  .dw-scene p{font-size:1.32rem}
+  .dw-end-h{font-size:1.35rem}
+  .dw-end-s{font-size:.88rem; margin-bottom:.6rem}
+  .dw-live .dw-end .dw-go{padding:.6rem 1.1rem; font-size:.88rem}
+  .dw-chart{padding:.7rem .7rem .6rem 1.9rem}
+  .dw-plot{height:clamp(120px,20vh,190px)}
+}
+@media (max-width:760px){
+  .dw-key{gap:.2rem .7rem; font-size:.64rem; margin-bottom:.35rem}
+  .dw-mk-r em{top:auto; bottom:calc(100% + 5px)}
+  .dw-mk em{font-size:.6rem}
+}
+@media (max-width:760px) and (max-height:780px){
+  .dw-live .dw-stage{padding-top:.5rem}
+  .dw-top{margin-bottom:.6rem}
+  .dw-live .dw-body{gap:.6rem}
+  .dw-live .dw-pics{min-height:70px}
+  .dw-scene p{font-size:1.18rem}
+  .dw-t{font-size:.68rem; margin-bottom:.15rem}
+  .dw-end-h{font-size:1.18rem; margin-bottom:.25rem}
+  .dw-end-s{font-size:.8rem; margin-bottom:.45rem}
+  .dw-live .dw-end .dw-go{padding:.5rem 1rem; font-size:.84rem}
+  .dw-plot{height:96px}
+  .dw-basal{height:12px; margin-top:.3rem}
+  .dw-note{font-size:.64rem; margin-top:.35rem}
+  .dw-chart{padding:.55rem .6rem .5rem 1.8rem}
+  .dw-mk-r em{top:auto; bottom:calc(100% + 5px)}
+}
+@media (min-width:761px){
+  .dw-live .dw-scene p{font-size:clamp(1.7rem,1rem + 1.4vw,2.5rem)}
+  .dw-live .dw-body{grid-template-columns:1.05fr 1fr; grid-template-rows:auto minmax(0,1fr); column-gap:clamp(1.5rem,3vw,3rem); row-gap:1.2rem}
+  .dw-live .dw-pics{grid-column:1; grid-row:1 / span 2; height:100%}
+  .dw-live .dw-words{grid-column:2; grid-row:1}
+  .dw-live .dw-chart{grid-column:2; grid-row:2; align-self:end}
+  .dw-live .dw-pic{border-radius:22px}
+  .dw-pic figcaption{font-size:.68rem}
+}
+#after-day{scroll-margin-top:72px}
+@media (min-width:761px){ .dw-live .dw-plot{height:clamp(170px,26vh,300px)} }

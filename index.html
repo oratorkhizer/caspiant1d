@@ -42,6 +42,7 @@
 <link rel="manifest" href="assets/site.webmanifest">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQ0QCK1PLQ"></script>
 <script src="/assets/track.js" defer></script>
+<script src="/assets/day.js?v=1" defer></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,6 +50,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300..800&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/assets/site.css?v=3">
+<link rel="stylesheet" href="/assets/day.css?v=1">
 </head>
 <body>
 <a href="#main" class="skip">Skip to content</a>
@@ -73,6 +75,66 @@
 </header>
 
 <main id="main">
+<!-- ===================== A DAY WITH THE PUMP (scroll moment) ===================== -->
+<section class="dw" id="day" aria-label="A day with the pump">
+  <div class="dw-stage">
+    <div class="dw-top">
+      <span class="dw-eye">A day with the pump</span>
+      <span class="dw-clock" aria-hidden="true"><b class="dw-now">6:00 am</b></span>
+      <a class="dw-skip" href="#after-day">Skip</a>
+    </div>
+
+    <div class="dw-body">
+      <div class="dw-pics">
+        <figure class="dw-pic on"><img src="assets/day/school-800.webp" srcset="assets/day/school-800.webp 800w, assets/day/school-1600.webp 1600w" sizes="(max-width:760px) 100vw, 46vw" width="1600" height="1067" alt="A young girl walking to school with her school bag" decoding="async"><figcaption>Illustrative image</figcaption></figure>
+        <figure class="dw-pic"><img src="assets/day/lunch-800.webp" srcset="assets/day/lunch-800.webp 800w, assets/day/lunch-1600.webp 1600w" sizes="(max-width:760px) 100vw, 46vw" width="1600" height="1067" alt="School students eating lunch from their tiffin boxes" loading="lazy" decoding="async"><figcaption>Illustrative image</figcaption></figure>
+        <figure class="dw-pic"><img src="assets/day/play-800.webp" srcset="assets/day/play-800.webp 800w, assets/day/play-1600.webp 1600w" sizes="(max-width:760px) 100vw, 46vw" width="1600" height="1067" alt="A boy batting in a game of cricket on a dusty ground" loading="lazy" decoding="async"><figcaption>Illustrative image</figcaption></figure>
+        <figure class="dw-pic"><img src="assets/day/homework-800.webp" srcset="assets/day/homework-800.webp 800w, assets/day/homework-1600.webp 1600w" sizes="(max-width:760px) 100vw, 46vw" width="1600" height="1067" alt="A boy doing his homework" loading="lazy" decoding="async"><figcaption>Illustrative image</figcaption></figure>
+        <figure class="dw-pic"><img src="assets/day/dinner-800.webp" srcset="assets/day/dinner-800.webp 800w, assets/day/dinner-1600.webp 1600w" sizes="(max-width:760px) 100vw, 46vw" width="1600" height="1067" alt="A home dinner plate with chapati and sabzi" loading="lazy" decoding="async"><figcaption>Illustrative image</figcaption></figure>
+        <figure class="dw-pic"><img src="assets/day/sleep-800.webp" srcset="assets/day/sleep-800.webp 800w, assets/day/sleep-1600.webp 1600w" sizes="(max-width:760px) 100vw, 46vw" width="1600" height="1067" alt="A quiet bedroom at night with a small lamp on" loading="lazy" decoding="async"><figcaption>Illustrative image</figcaption></figure>
+      </div>
+
+      <div class="dw-words">
+        <ol class="dw-scenes">
+          <li class="dw-scene on"><span class="dw-t">7:00 am &middot; School bag</span><p>The pump sits in a pocket or a pouch under the uniform. Most classmates never know it is there.</p></li>
+          <li class="dw-scene"><span class="dw-t">1:00 pm &middot; Lunch at school</span><p>Your child enters the carbs before lunch. It takes about fifteen seconds.</p></li>
+          <li class="dw-scene"><span class="dw-t">4:30 pm &middot; Cricket</span><p>Set a temporary higher target half an hour before play. The system eases back on insulin in advance.</p></li>
+          <li class="dw-scene"><span class="dw-t">6:30 pm &middot; Homework</span><p>Up to five family members can follow the readings on their own phones.</p></li>
+          <li class="dw-scene"><span class="dw-t">8:30 pm &middot; Dinner</span><p>After a rich meal, the system keeps correcting through the slow rise that comes hours later.</p></li>
+          <li class="dw-scene"><span class="dw-t">11:00 pm &middot; Sleep</span><p>If glucose drifts down at night, the pump reduces or pauses insulin by itself.</p></li>
+        </ol>
+        <div class="dw-end">
+          <p class="dw-end-h">It checks every five minutes and adjusts insulin by itself, awake or asleep.</p>
+          <p class="dw-end-s">It is not a cure, and it is not magic. Meals are still announced.</p>
+          <a class="dw-go" href="#how">See how it works <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+
+      <div class="dw-chart">
+        <div class="dw-key" aria-hidden="true"><span><i></i>Target 70&ndash;180 mg/dL</span><span><i class="k-line"></i>Glucose</span><span><i class="k-mk"></i>Pump adjusts insulin</span></div>
+        <div class="dw-plot">
+          <div class="dw-band"></div>
+          <span class="dw-y" style="top:41.67%">180</span>
+          <span class="dw-y" style="top:87.5%">70</span>
+          <svg class="dw-svg" viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true">
+            <defs><clipPath id="dwClip"><rect class="dw-cliprect" x="0" y="0" width="1000" height="300"/></clipPath></defs>
+            <path class="dw-ghost" d="M0.0 210.0 C6.9 208.8 30.6 205.0 41.7 202.5 C52.8 200.0 56.9 204.2 66.7 195.0 C76.4 185.8 88.9 152.9 100.0 147.5 C111.1 142.1 122.2 155.4 133.3 162.5 C144.4 169.6 154.2 182.9 166.7 190.0 C179.2 197.1 194.4 201.7 208.3 205.0 C222.2 208.3 236.1 210.4 250.0 210.0 C263.9 209.6 279.9 212.5 291.7 202.5 C303.5 192.5 311.8 161.2 320.8 150.0 C329.9 138.8 336.8 136.2 345.8 135.0 C354.9 133.8 365.3 135.8 375.0 142.5 C384.7 149.2 395.1 166.7 404.2 175.0 C413.2 183.3 420.1 186.7 429.2 192.5 C438.2 198.3 449.3 205.0 458.3 210.0 C467.4 215.0 475.0 221.2 483.3 222.5 C491.7 223.8 500.0 220.0 508.3 217.5 C516.7 215.0 524.3 210.0 533.3 207.5 C542.4 205.0 552.8 204.6 562.5 202.5 C572.2 200.4 581.2 203.8 591.7 195.0 C602.1 186.2 613.9 159.6 625.0 150.0 C636.1 140.4 647.2 138.3 658.3 137.5 C669.4 136.7 680.6 140.0 691.7 145.0 C702.8 150.0 713.2 160.4 725.0 167.5 C736.8 174.6 749.3 181.7 762.5 187.5 C775.7 193.3 790.3 197.5 804.2 202.5 C818.1 207.5 834.0 213.3 845.8 217.5 C857.6 221.7 864.6 226.7 875.0 227.5 C885.4 228.3 895.8 224.6 908.3 222.5 C920.8 220.4 934.7 217.1 950.0 215.0 C965.3 212.9 991.7 210.8 1000.0 210.0"/>
+            <path class="dw-line" clip-path="url(#dwClip)" d="M0.0 210.0 C6.9 208.8 30.6 205.0 41.7 202.5 C52.8 200.0 56.9 204.2 66.7 195.0 C76.4 185.8 88.9 152.9 100.0 147.5 C111.1 142.1 122.2 155.4 133.3 162.5 C144.4 169.6 154.2 182.9 166.7 190.0 C179.2 197.1 194.4 201.7 208.3 205.0 C222.2 208.3 236.1 210.4 250.0 210.0 C263.9 209.6 279.9 212.5 291.7 202.5 C303.5 192.5 311.8 161.2 320.8 150.0 C329.9 138.8 336.8 136.2 345.8 135.0 C354.9 133.8 365.3 135.8 375.0 142.5 C384.7 149.2 395.1 166.7 404.2 175.0 C413.2 183.3 420.1 186.7 429.2 192.5 C438.2 198.3 449.3 205.0 458.3 210.0 C467.4 215.0 475.0 221.2 483.3 222.5 C491.7 223.8 500.0 220.0 508.3 217.5 C516.7 215.0 524.3 210.0 533.3 207.5 C542.4 205.0 552.8 204.6 562.5 202.5 C572.2 200.4 581.2 203.8 591.7 195.0 C602.1 186.2 613.9 159.6 625.0 150.0 C636.1 140.4 647.2 138.3 658.3 137.5 C669.4 136.7 680.6 140.0 691.7 145.0 C702.8 150.0 713.2 160.4 725.0 167.5 C736.8 174.6 749.3 181.7 762.5 187.5 C775.7 193.3 790.3 197.5 804.2 202.5 C818.1 207.5 834.0 213.3 845.8 217.5 C857.6 221.7 864.6 226.7 875.0 227.5 C885.4 228.3 895.8 224.6 908.3 222.5 C920.8 220.4 934.7 217.1 950.0 215.0 C965.3 212.9 991.7 210.8 1000.0 210.0"/>
+          </svg>
+          <i class="dw-dot" aria-hidden="true"></i>
+          <span class="dw-mk" data-x="32.92" style="left:32.92%; top:47.22%"><b>+</b><em>Extra after lunch</em></span>
+          <span class="dw-mk dw-mk-low" data-x="43.33" style="left:43.33%; top:64.99%"><b>&minus;</b><em>Eases off before play</em></span>
+          <span class="dw-mk" data-x="66.67" style="left:66.67%; top:45.89%"><b>+</b><em>Corrects after dinner</em></span>
+          <span class="dw-mk dw-mk-low dw-mk-r" data-x="85.83" style="left:85.83%; top:74.2%"><b>&#10074;&#10074;</b><em>Pauses as it drifts down</em></span>
+        </div>
+        <div class="dw-basal" aria-hidden="true"></div>
+        <div class="dw-xa" aria-hidden="true"><span>6 am</span><span>12 pm</span><span>6 pm</span><span>12 am</span><span>6 am</span></div>
+        <p class="dw-note"><b>Illustrative example, not real patient data.</b> Every child is different.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<div id="after-day"></div>
 <!-- ============================ HERO ============================ -->
 <div id="top"></div>
 <section class="hero">
