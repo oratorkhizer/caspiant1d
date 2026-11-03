@@ -10,7 +10,11 @@
 .dw-clock b{font-weight:650; color:var(--ink)}
 .dw-skip{position:relative; z-index:5; font-size:.8rem; font-weight:600; color:var(--ink-2); text-decoration:none; border:1px solid var(--line); background:#fff; border-radius:100px; padding:.42rem .9rem; margin-left:auto}
 .dw-skip:hover{border-color:var(--ink-3); color:var(--ink)}
-.dw-skip:focus-visible,.dw-go:focus-visible{outline:3px solid var(--blue); outline-offset:3px}
+.dw-skip:focus-visible,.dw-go:focus-visible,.dw-replay:focus-visible,.dw-act:focus-visible{outline:3px solid var(--blue); outline-offset:3px}
+.dw-replay{position:relative; z-index:5; font:inherit; font-size:.8rem; font-weight:600; color:var(--blue); background:var(--blue-soft); border:1px solid rgba(11,111,194,.25); border-radius:100px; padding:.42rem .9rem; margin-left:auto; cursor:pointer}
+.dw-replay[hidden]{display:none}
+.dw-replay:hover{border-color:var(--blue)}
+.dw-replay + .dw-skip{margin-left:.5rem}
 .dw-clock + .dw-skip{margin-left:.6rem}
 
 .dw-body{display:grid; gap:1.2rem}
@@ -30,7 +34,7 @@
 
 .dw-chart{background:#fff; border:1px solid var(--line); border-radius:18px; padding:.9rem .9rem .7rem 2.1rem; box-shadow:var(--shadow)}
 .dw-plot{position:relative; height:clamp(150px,24vh,260px)}
-.dw-band{position:absolute; left:0; right:0; top:41.67%; bottom:12.5%; background:var(--green-soft); border-block:1px dashed rgba(31,138,95,.35); border-radius:4px}
+.dw-band{position:absolute; left:0; right:0; top:18.6%; bottom:17.44%; background:var(--green-soft); border-block:1px dashed rgba(31,138,95,.35); border-radius:4px}
 .dw-key{display:flex; flex-wrap:wrap; gap:.3rem 1rem; margin:0 0 .5rem -1.2rem; font-size:.68rem; font-weight:600; color:var(--ink-2)}
 .dw-key span{display:inline-flex; align-items:center; gap:.4rem}
 .dw-key i{display:inline-block; width:14px; height:10px; border-radius:3px; background:var(--green-soft); border:1px dashed rgba(31,138,95,.5)}
@@ -58,7 +62,7 @@
 }
 
 /* ---------- live (pinned) ---------- */
-.dw.dw-live{height:560vh}
+.dw.dw-live{height:380vh}
 .dw-live .dw-stage{position:sticky; top:var(--hdr,64px); height:calc(100vh - var(--hdr,64px)); height:calc(100dvh - var(--hdr,64px)); display:flex; flex-direction:column; padding-block:.8rem 1rem; overflow:hidden}
 .dw-live .dw-clock{display:block}
 .dw-live .dw-body{flex:1; min-height:0; display:grid; grid-template-rows:minmax(0,1fr) auto auto; gap:.8rem}
@@ -123,3 +127,117 @@
 }
 #after-day{scroll-margin-top:72px}
 @media (min-width:761px){ .dw-live .dw-plot{height:clamp(170px,26vh,300px)} }
+
+/* ---------- v2: the hero is the first frame ---------- */
+/* Old hero heading is now an h2: keep its h1 look. */
+.hero-h{font-size:clamp(2.5rem,1.4rem + 5.2vw,4.7rem); font-weight:600; letter-spacing:-.035em; margin-bottom:.42em}
+.hero-h em{font-family:"Instrument Serif",Georgia,serif; font-style:italic; font-weight:400; color:var(--blue)}
+
+/* Static (no JS / reduced motion): the hero is a normal block above the day. */
+.dw-hero{grid-column:1 / -1; padding-bottom:.6rem}
+.dw-pill{margin-bottom:1.1rem}
+.dw-h1{font-size:clamp(2.3rem,1.3rem + 4vw,4.2rem); margin-bottom:.35em}
+.dw-hero-s{font-size:clamp(1rem,.95rem + .35vw,1.2rem); line-height:1.55; color:var(--ink-2); max-width:46ch; margin:0}
+.dw-acts{display:flex; flex-wrap:wrap; gap:.55rem; margin-top:1.3rem}
+.dw-act{position:relative; z-index:7; padding:.8rem 1.25rem; font-size:.95rem; gap:0}
+.dw-cue{display:none; margin:1.2rem 0 0; font-size:.78rem; font-weight:600; letter-spacing:.04em; color:var(--ink-3)}
+.dw-cue span{display:inline-block; margin-left:.25rem; color:var(--blue)}
+
+/* Live: hero layer sits over part of the stage and hands over to the story. */
+.dw-live .dw-hero{position:relative; z-index:6; padding:0; min-height:0; align-self:stretch; pointer-events:none}
+.dw-live .dw-hero-in{position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; background:var(--paper);
+  opacity:var(--ho,1); transform:translateY(var(--hy,0px)); pointer-events:auto}
+.dw-live .dw-hero.off .dw-hero-in{visibility:hidden; pointer-events:none}
+.dw-live .dw-cue{display:block}
+.dw-live .dw-hero.at-end .dw-pill,.dw-live .dw-hero.at-end .dw-hero-s,.dw-live .dw-hero.at-end .dw-cue{display:none}
+.dw-live .dw-hero.at-end .dw-hero-in{inset:0 0 auto 0; justify-content:flex-start; padding:.9rem 1rem 1rem; border-radius:14px;
+  background:color-mix(in srgb, var(--paper) 93%, transparent); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); box-shadow:var(--shadow)}
+.dw-live .dw-hero.at-end .dw-h1{font-size:clamp(1.6rem,1.2rem + 1.6vw,2.6rem); margin-bottom:.1em}
+.dw-live .dw-hero.at-end .dw-acts{margin-top:.6rem}
+.dw-live .dw-hero.at-end .dw-act{padding:.6rem 1rem; font-size:.88rem}
+
+/* Remembered: a returning visitor gets the end state as one normal screen. */
+.dw.dw-live.dw-seen{height:auto}
+.dw-live.dw-seen .dw-stage{position:relative; top:0}
+.dw-live.dw-seen .dw-clock{display:none}
+.dw-live.dw-seen .dw-pic,.dw-live.dw-seen .dw-scene,.dw-live.dw-seen .dw-end,.dw-live.dw-seen .dw-mk{transition:none}
+
+@media (max-width:760px){
+  .dw-live .dw-body{grid-template-rows:minmax(0,1fr) auto auto}
+  .dw-live .dw-pics{grid-row:1; grid-column:1}
+  .dw-live .dw-words{grid-row:2; grid-column:1}
+  .dw-live .dw-chart{grid-row:3; grid-column:1}
+  .dw-live .dw-hero{grid-column:1; grid-row:1 / span 2}
+  .dw-live .dw-hero.at-end{grid-row:1}
+  .dw-live .dw-pill{display:none}
+  .dw-live .dw-h1{font-size:clamp(2.2rem,1.4rem + 4vw,2.7rem)}
+  .dw-hero-s{font-size:1rem}
+  .dw-live .dw-plot{height:clamp(104px,15vh,150px)}
+  .dw-live .dw-pics{min-height:150px}
+  /* Phone fix: the closing words no longer set the height of the words row
+     (that left a big blank gap under every scene). They grow upward instead,
+     and at the end the photo gives way to the hero card and the closing words. */
+  .dw-live .dw-words{position:relative}
+  .dw-live .dw-end{position:absolute; left:0; right:0; bottom:0; grid-area:auto}
+  .dw-live .dw-pics{transition:opacity .4s ease}
+  .dw-live.dw-done .dw-pics{opacity:0}
+  .dw-live .dw-hero.at-end .dw-hero-in{inset:0; justify-content:center; background:var(--paper-2); box-shadow:none; border:1px solid var(--line); backdrop-filter:none; -webkit-backdrop-filter:none}
+  .dw-eye,.dw-clock{white-space:nowrap}
+  .dw-live.dw-seen .dw-top{gap:.5rem}
+  .dw-live.dw-seen .dw-eye{letter-spacing:.1em}
+  .dw-live.dw-seen .dw-eye::before{display:none}
+}
+@media (max-width:480px){
+  .dw-xl{display:none}
+  .dw-act{padding:.75rem 1.15rem}
+}
+@media (max-width:760px) and (max-height:780px){
+  .dw-live .dw-plot{height:84px}
+  .dw-live .dw-pics{min-height:120px}
+  .dw-live .dw-h1{font-size:2rem}
+  .dw-hero-s{font-size:.95rem; line-height:1.5}
+  .dw-acts{margin-top:.9rem}
+  .dw-live .dw-cue{margin-top:.8rem}
+  .dw-live .dw-hero.at-end .dw-hero-in{padding:.7rem .8rem .8rem}
+  .dw-live .dw-hero.at-end .dw-h1{font-size:1.45rem}
+  .dw-live .dw-hero.at-end .dw-act{padding:.5rem .9rem; font-size:.84rem}
+}
+@media (min-width:761px){
+  .dw-live .dw-hero{grid-column:2; grid-row:1 / span 2}
+  .dw-live .dw-hero.at-end{grid-column:1; grid-row:1 / span 2}
+  .dw-live .dw-hero.at-end .dw-hero-in{inset:1.2rem 1.2rem auto 1.2rem; padding:1.4rem 1.5rem 1.5rem; border-radius:18px}
+  .dw-live .dw-plot{height:clamp(180px,30vh,320px)}
+}
+.dw:focus{outline:none}
+/* Short phones (and iPhone Safari with its toolbars): the hero takes the whole
+   stage at the start, and at the end the hero card sits where the chart was,
+   because there is no room for card, closing words and chart together. */
+@media (max-width:760px) and (max-height:720px){
+  .dw-live .dw-hero{grid-row:1 / span 3}
+  .dw-live .dw-hero.at-end{grid-row:3}
+  .dw-live .dw-hero.at-end .dw-hero-in{inset:0; justify-content:center}
+  .dw-live.dw-done .dw-chart{visibility:hidden}
+}
+@media (max-width:760px) and (max-height:600px){
+  .dw-live .dw-stage{padding-top:.35rem}
+  .dw-top{margin-bottom:.4rem}
+  .dw-live .dw-plot{height:64px}
+  .dw-live .dw-pics{min-height:80px}
+  .dw-live .dw-key{display:none}
+  .dw-live .dw-scene p{font-size:1.05rem}
+  .dw-live .dw-h1{font-size:1.8rem}
+  .dw-hero-s{font-size:.9rem}
+}
+@media (max-width:400px){
+  .dw-top{gap:.55rem}
+  .dw-eye{letter-spacing:.11em}
+  .dw-eye::before{width:14px}
+}
+@media (max-width:340px){
+  .dw-eye{letter-spacing:.05em; font-size:.66rem}
+  .dw-eye::before{display:none}
+  .dw-clock{font-size:.82rem}
+}
+/* Hidden closing link is not reachable by Tab until the closing frame shows. */
+.dw-live .dw-end{visibility:hidden; transition:opacity .45s ease, transform .45s ease, visibility 0s linear .45s}
+.dw-live.dw-done .dw-end{visibility:visible; transition-delay:0s}
