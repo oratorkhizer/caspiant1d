@@ -186,7 +186,11 @@
     track('seen_return');
   }
 
-  skip.addEventListener('click', function () { track('skip'); store.set(); });
+  skip.addEventListener('click', function () {
+    track('skip'); store.set();
+    // Let the jump happen, then drop the #after-day hash so a reload starts at the top.
+    setTimeout(function () { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} }, 0);
+  });
   replay.addEventListener('click', function () {
     store.del();
     seen = false;
@@ -203,4 +207,10 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', function () { setHdr(); last = -1; if (seen) render(1); else onScroll(); });
   if (seen) showSeen(); else frame();
+  // The closing words change height once the web fonts arrive (and on rotate),
+  // so fit the closing card again whenever that happens.
+  var refit = function () { if (hero.classList.contains('at-end')) fitEnd(true); };
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(refit);
+  window.addEventListener('load', refit);
+  if ('ResizeObserver' in window) new ResizeObserver(refit).observe(endEl);
 })();
